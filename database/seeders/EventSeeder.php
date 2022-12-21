@@ -24,14 +24,14 @@ class EventSeeder extends Seeder
                 'date' => '2023-04-20',
             ],
             [
-                'id' => 1,
+                'id' => 2,
                 'name' => 'Concierto de opera',
                 'description' => 'Tendremos el placer de contar con la soprano Mireia Marí, gran cantante de opera formada en el Conservatorio Superior de Canto de Valencia.',
                 'is_delete' => false,
                 'date' => '2023-08-12',
             ],
             [
-                'id' => 1,
+                'id' => 3,
                 'name' => 'Certamen ámbito Diputación de Valencia',
                 'description' => 'Sala individual totalmente equiada para tu día de estudio.',
                 'is_delete' => false,
