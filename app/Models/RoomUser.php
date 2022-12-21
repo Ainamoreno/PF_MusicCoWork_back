@@ -16,4 +16,9 @@ class RoomUser extends Model
         'date',
         'is_delete'
     ];
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

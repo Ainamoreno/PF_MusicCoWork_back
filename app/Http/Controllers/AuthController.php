@@ -12,6 +12,23 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        $email =  $request->get('email');
+        $userIsCreate = User::where('email', $email)
+            ->where('is_delete', true)
+            ->get()
+            ->toArray();
+
+        if (count($userIsCreate) === 1) {
+            $user = User::query()
+                ->where('email', $email)
+
+                ->update(['is_delete' => false]);
+
+            return response()->json([
+                "success" => false,
+                "message" => 'Este email ya había sido utilizado, por lo tanto, hemos reactivado la cuenta.'
+            ], 400);
+        }
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:20',
             'surname' => 'required|string|max:20',
@@ -25,6 +42,7 @@ class AuthController extends Controller
                 "message" => $validator->messages()
             ], 400);
         }
+
 
         $user = User::create([
             'name' => $request->get('name'),

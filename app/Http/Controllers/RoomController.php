@@ -87,6 +87,8 @@ class RoomController extends Controller
 
             $reservation = RoomUser::where('user_id', $userId)
                 ->where('is_delete', false)
+                ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
+                ->select('rooms.id', 'rooms.name', 'room_users.*')
                 ->get()
                 ->toArray();
 
@@ -112,7 +114,7 @@ class RoomController extends Controller
             RoomUser::where('user_id', $userId)
                 ->where('id', $id)
                 ->update(['is_busy' => false]);
-                
+
             return response([
                 'success' => true,
                 'message' => 'Se ha cancelado la reserva correctamente.',

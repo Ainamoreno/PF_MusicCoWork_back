@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
@@ -19,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::group([
+    'middleware' => ['jwt.auth', 'isAdmin']
+], function () {
+    Route::post('/createroom', [AdminController::class, 'createRoom']);
+    Route::get('/getallusers', [AdminController::class, 'getAllUsers']);
+    Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
+    
+});
 
 //Rooms
 Route::get('/rooms', [RoomController::class, 'getAllRooms']);
