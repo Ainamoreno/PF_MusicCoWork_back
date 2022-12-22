@@ -12,10 +12,14 @@ class RoomUser extends Model
     protected $fillable = [
         'user_id',
         'room_id',
-        'is_busy',
+        'cancelled',
         'date',
-        'is_delete'
     ];
+
+    public function room()
+    {
+        return $this->belongsToMany(Room::class);
+    }
 
     public function user()
     {

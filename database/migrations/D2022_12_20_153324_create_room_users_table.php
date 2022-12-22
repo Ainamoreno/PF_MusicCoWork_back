@@ -18,8 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('room_id')->constrained('rooms');
             $table->date('date');
-            $table->boolean('is_busy');
-            $table->boolean('is_delete');
+            $table->boolean('cancelled');
             $table->timestamps();
         });
     }
