@@ -36,7 +36,7 @@ class RoomController extends Controller
             $userId = auth()->user()->id;
             $roomIsBusy = RoomUser::where('room_id', $roomId)
                 ->where('date', $request->get('date'))
-                ->where('is_busy', true)
+                ->where('cancelled', false)
                 ->get()
                 ->toArray();
 
@@ -61,9 +61,8 @@ class RoomController extends Controller
             $reservation = RoomUser::create([
                 'user_id' => $userId,
                 'room_id' => $roomId,
-                'is_busy' => true,
+                'cancelled' => false,
                 'date' =>  $request->get('date'),
-                'is_delete' => false
             ]);
             return response([
                 'success' => true,
@@ -86,7 +85,7 @@ class RoomController extends Controller
             $userId = auth()->user()->id;
 
             $reservation = RoomUser::where('user_id', $userId)
-                ->where('is_delete', false)
+                ->where('cancelled', false)
                 ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
                 ->select('rooms.id', 'rooms.name', 'room_users.*')
                 ->get()
@@ -113,7 +112,7 @@ class RoomController extends Controller
             $userId = auth()->user()->id;
             RoomUser::where('user_id', $userId)
                 ->where('id', $id)
-                ->update(['is_busy' => false]);
+                ->update(['cancelled' => true]);
 
             return response([
                 'success' => true,
