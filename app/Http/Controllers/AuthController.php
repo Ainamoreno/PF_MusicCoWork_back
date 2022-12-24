@@ -29,6 +29,7 @@ class AuthController extends Controller
                 "message" => 'Este email ya había sido utilizado, por lo tanto, hemos reactivado la cuenta.'
             ], 400);
         }
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:20',
             'surname' => 'required|string|max:20',

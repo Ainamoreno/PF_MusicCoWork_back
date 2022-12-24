@@ -14,7 +14,10 @@ class RoomController extends Controller
     public function getAllRooms()
     {
         try {
-            $rooms = Room::query()->get()->toArray();
+            $rooms = Room::query()
+            ->where('is_active', true)
+            ->get()
+            ->toArray();
             return response([
                 'success' => true,
                 'message' => 'Se han mostrado las salas correctamente.',

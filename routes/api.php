@@ -27,6 +27,7 @@ Route::group([
     'middleware' => ['jwt.auth', 'isAdmin']
 ], function () {
     Route::post('/createroom', [AdminController::class, 'createRoom']);
+    Route::put('/deleteroom/{id}', [AdminController::class, 'deleteRoom']);
     
     Route::get('/getallusers', [AdminController::class, 'getAllUsers']);
     Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
@@ -35,10 +36,18 @@ Route::group([
     Route::put('/deleteevent/{id}', [AdminController::class, 'deleteEvent']);
 
     Route::get('/allreservationsrooms', [AdminController::class, 'getAllReservationsRooms']);  
+    Route::get('/allreservationsevents', [AdminController::class, 'getAllReservationsEvents']);  
 });
 
 // Events
 Route::get('/allevents', [EventController::class, 'getAllEvents']);
+
+Route::group([
+    'middleware' => 'jwt.auth'
+], function () {
+    Route::post('/event/{id}', [EventController::class, 'reserveEvent']);
+    Route::get('/events', [EventController::class, 'myEvents']);
+});
 
 //Rooms
 Route::get('/rooms', [RoomController::class, 'getAllRooms']);

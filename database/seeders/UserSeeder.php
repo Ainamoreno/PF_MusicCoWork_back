@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => '$2y$10$14WdyNVj.2N/6bil9PnFhe9tsU5og3aS3shwZhpDel/fVcIM4IhT2',
                 // 123456
-                'is_delete' => false,
+                'is_active' => true,
                 'role_id' => 2
             ],
             [
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'email' => 'marta@marta.com',
                 'password' => '$2y$10$14WdyNVj.2N/6bil9PnFhe9tsU5og3aS3shwZhpDel/fVcIM4IhT2',
                 // 123456
-                'is_delete' => false,
+                'is_active' => true,
                 'role_id' => 1
             ]
         ]);

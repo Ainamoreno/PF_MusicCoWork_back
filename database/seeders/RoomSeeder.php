@@ -22,6 +22,7 @@ class RoomSeeder extends Seeder
                 'description' => 'Sala individual totalmente equiada para tu día de estudio.',
                 'price' => 5,
                 'horary' => 'De 09:00 a 20:00h',
+                'is_active' => true
             ],
             [
                 'id' => 2,
@@ -29,6 +30,7 @@ class RoomSeeder extends Seeder
                 'description' => 'Sala totalmente equiada para dos personas, incluyendo piano.',
                 'price' => 10,
                 'horary' => 'De 09:00 a 20:00h',
+                'is_active' => true
             ],
             [
                 'id' => 3,
@@ -36,6 +38,7 @@ class RoomSeeder extends Seeder
                 'description' => 'Sala equipada con piano, aplificadores de guitarra y bajo, además de microfonía.',
                 'price' => 15,
                 'horary' => 'De 09:00 a 20:00h',
+                'is_active' => true
             ],
             [
                 'id' => 4,
@@ -43,6 +46,7 @@ class RoomSeeder extends Seeder
                 'description' => 'Sala individual con el mobiliario adecuado para estudiar asignaturas teóricas.',
                 'price' => 5,
                 'horary' => 'De 09:00 a 20:00h',
+                'is_active' => true
             ],
             [
                 'id' => 5,
@@ -50,6 +54,7 @@ class RoomSeeder extends Seeder
                 'description' => 'Sala totalmente equipada para ensayos grupales (3 o 4 personas).',
                 'price' => 20,
                 'horary' => 'De 09:00 a 20:00h',
+                'is_active' => true
             ],
         ]);
     }
