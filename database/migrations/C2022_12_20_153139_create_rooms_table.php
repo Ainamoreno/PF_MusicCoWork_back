@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('price');
             $table->string('horary');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

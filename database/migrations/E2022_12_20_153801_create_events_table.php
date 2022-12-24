@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->date('date');
-            $table->boolean('is_delete');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

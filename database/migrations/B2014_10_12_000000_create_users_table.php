@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->foreignId('role_id')->constrained('roles');
-            $table->boolean('is_delete');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
