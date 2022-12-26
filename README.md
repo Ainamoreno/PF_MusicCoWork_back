@@ -14,7 +14,7 @@ Este proyecto consta de la base de datos de un CoWorking para músicos. Consta d
 
 #### De usuario:
 
-- Regitrar usuario.
+- Registrar usuario.
 - Inicio de sesión de un usuario.
 - Ver datos de un usuario.
 - Mostrar todas las salas.
