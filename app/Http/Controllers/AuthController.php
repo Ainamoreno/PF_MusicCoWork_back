@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         $email =  $request->get('email');
         $userIsCreate = User::where('email', $email)
-            ->where('is_delete', true)
+            ->where('is_active', false)
             ->get()
             ->toArray();
 
@@ -22,7 +22,7 @@ class AuthController extends Controller
             $user = User::query()
                 ->where('email', $email)
 
-                ->update(['is_delete' => false]);
+                ->update(['is_active' => true]);
 
             return response()->json([
                 "success" => false,
@@ -50,7 +50,7 @@ class AuthController extends Controller
             'surname' => $request->get('surname'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->password),
-            'is_delete' => false,
+            'is_active' => true,
             'role_id' => 1
         ]);
 
