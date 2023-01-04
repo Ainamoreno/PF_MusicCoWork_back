@@ -10,6 +10,8 @@ Este proyecto consta de la base de datos de un CoWorking para músicos. Consta d
 - Clonar el repositorio y lanzar el comando `composer install`.
 - Para levantar el servidor tenemos que lanzar el comando `php artisan serve`.
 
+### Colección de PostMan
+Link: https://api.postman.com/collections/24265919-ae7761da-c6e9-43d9-82ed-03dc011b62f4?access_key=PMAT-01GNY5SY0X5HAFDPZ30G2H4KJC
 ### Funcionalidades
 
 #### De usuario:
