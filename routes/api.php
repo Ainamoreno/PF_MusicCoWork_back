@@ -33,7 +33,7 @@ Route::group([
     Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
 
     Route::post('/createevent', [AdminController::class, 'createEvent']);
-    Route::put('/deleteevent/{id}', [AdminController::class, 'deleteEvent']);
+    Route::get('/deleteevent/{id}', [AdminController::class, 'deleteEvent']);
 
     Route::get('/allreservationsrooms', [AdminController::class, 'getAllReservationsRooms']);  
     Route::get('/allreservationsevents', [AdminController::class, 'getAllReservationsEvents']);  
