@@ -18,6 +18,17 @@ class AuthController extends Controller
             ->get()
             ->toArray();
 
+        $userExist = User::where('email', $email)
+            ->where('is_active', true)
+            ->get()
+            ->toArray();
+
+        if (count($userExist) === 1) {
+            return response()->json([
+                "success" => false,
+                "message" => 'Este email ya había sido utilizado.'
+            ], 200);
+        }
         if (count($userIsCreate) === 1) {
             $user = User::query()
                 ->where('email', $email)
@@ -27,9 +38,9 @@ class AuthController extends Controller
             return response()->json([
                 "success" => false,
                 "message" => 'Este email ya había sido utilizado, por lo tanto, hemos reactivado la cuenta.'
-            ], 400);
+            ], 200);
         }
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:20',
             'surname' => 'required|string|max:20',
@@ -41,7 +52,7 @@ class AuthController extends Controller
             return response()->json([
                 "success" => false,
                 "message" => $validator->messages()
-            ], 400);
+            ], 200);
         }
 
 
@@ -55,7 +66,11 @@ class AuthController extends Controller
         ]);
 
         $token = JWTAuth::fromUser($user);
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json([
+            "success" => false,
+            "message" => 'OK',
+            'user' => $user
+        ], 200);
     }
 
     public function login(Request $request)

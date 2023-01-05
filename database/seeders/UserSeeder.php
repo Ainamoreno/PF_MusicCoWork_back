@@ -24,7 +24,9 @@ class UserSeeder extends Seeder
                 'password' => '$2y$10$14WdyNVj.2N/6bil9PnFhe9tsU5og3aS3shwZhpDel/fVcIM4IhT2',
                 // 123456
                 'is_active' => true,
-                'role_id' => 2
+                'role_id' => 2,
+                'created_at' => now(),
+                'updated_at' =>now()
             ],
             [
                 'id' => 2,
@@ -34,7 +36,9 @@ class UserSeeder extends Seeder
                 'password' => '$2y$10$14WdyNVj.2N/6bil9PnFhe9tsU5og3aS3shwZhpDel/fVcIM4IhT2',
                 // 123456
                 'is_active' => true,
-                'role_id' => 1
+                'role_id' => 1,
+                'created_at' => now(),
+                'updated_at' =>now()
             ]
         ]);
     }

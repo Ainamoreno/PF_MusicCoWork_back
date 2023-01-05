@@ -45,7 +45,7 @@ Route::get('/allevents', [EventController::class, 'getAllEvents']);
 Route::group([
     'middleware' => 'jwt.auth'
 ], function () {
-    Route::post('/event/{id}', [EventController::class, 'reserveEvent']);
+    Route::get('/event/{id}', [EventController::class, 'reserveEvent']);
     Route::get('/events', [EventController::class, 'myEvents']);
 });
 
@@ -56,7 +56,7 @@ Route::group([
     'middleware' => 'jwt.auth'
 ], function () {
     Route::post('/room/{id}', [RoomController::class, 'reserveRoom']);
-    Route::put('/reservation/{id}', [RoomController::class, 'cancelReservation']);
+    Route::get('/reservation/{id}', [RoomController::class, 'cancelReservation']);
     Route::get('/reservations', [RoomController::class, 'myReservations']);
 });
 

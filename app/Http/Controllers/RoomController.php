@@ -47,7 +47,7 @@ class RoomController extends Controller
                 return response()->json([
                     "success" => false,
                     "message" => 'Lo sentimos, ya tenemos reservada el aula para este día'
-                ], 400);
+                ], 200);
             }
 
             $validator = Validator::make($request->all(), [
@@ -91,7 +91,8 @@ class RoomController extends Controller
                 ->where('cancelled', false)
                 ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
                 ->select('rooms.id', 'rooms.name', 'room_users.*')
-                ->get()
+                ->paginate(5)
+                // ->get()
                 ->toArray();
 
             return response([

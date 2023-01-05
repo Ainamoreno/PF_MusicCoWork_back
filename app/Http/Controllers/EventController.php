@@ -43,7 +43,7 @@ class EventController extends Controller
                 return response()->json([
                     "success" => false,
                     "message" => 'Ya está reservado.'
-                ], 400);
+                ], 200);
             }
 
             EventUser::create([
@@ -73,8 +73,10 @@ class EventController extends Controller
             $myEvents = EventUser::query()
                 ->where('user_id', $userId)
                 ->join('events', 'events.id', '=', 'event_users.event_id')
-                ->select('events.id', 'events.name', 'events.description', 'event_users.*')
-                ->get()->toArray();
+                ->select('events.id', 'events.name', 'events.description', 'events.date', 'event_users.*')
+                // ->get()
+                ->paginate(5)
+                ->toArray();
             return response([
                 'success' => true,
                 'message' => 'Se han podido acceder a las reservas de los eventos correctamente.',
