@@ -27,7 +27,7 @@ Route::group([
     'middleware' => ['jwt.auth', 'cors']
 ], function () {
     Route::post('/createroom', [AdminController::class, 'createRoom']);
-    Route::put('/deleteroom/{id}', [AdminController::class, 'deleteRoom']);
+    Route::get('/deleteroom/{id}', [AdminController::class, 'deleteRoom']);
     
     Route::get('/getallusers', [AdminController::class, 'getAllUsers']);
     Route::delete('/deleteuser/{id}', [AdminController::class, 'deleteUser']);
