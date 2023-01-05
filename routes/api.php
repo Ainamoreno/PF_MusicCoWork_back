@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 //Admin
 Route::group([
-    'middleware' => ['jwt.auth', 'isAdmin', 'cors']
+    'middleware' => ['jwt.auth', 'cors']
 ], function () {
     Route::post('/createroom', [AdminController::class, 'createRoom']);
     Route::put('/deleteroom/{id}', [AdminController::class, 'deleteRoom']);
