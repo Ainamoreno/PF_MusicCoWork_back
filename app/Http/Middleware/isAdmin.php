@@ -26,7 +26,9 @@ class isAdmin
                 "success"=> true,
                 "message" => "No puedes pasar"
             ]);
+        } else{
+            return $next($request);
         }
-        return $next($request);
+        
     }
 }
