@@ -99,18 +99,18 @@ class AdminController extends Controller
     public function createEvent(Request $request)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:50',
-                'description' => 'required|string|max:255',
-                'date' => 'required|date'
-            ]);
+            // $validator = Validator::make($request->all(), [
+            //     'name' => 'required|string|max:50',
+            //     'description' => 'required|string|max:255',
+            //     'date' => 'required|date'
+            // ]);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    "success" => false,
-                    "message" => $validator->messages()
-                ], 400);
-            }
+            // if ($validator->fails()) {
+            //     return response()->json([
+            //         "success" => false,
+            //         "message" => $validator->messages()
+            //     ], 400);
+            // }
 
             $newEvent = Event::create([
                 'name' => $request->get('name'),
