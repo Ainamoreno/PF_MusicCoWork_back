@@ -13,7 +13,7 @@ class RoomController extends Controller
 {
     public function getAllRooms()
     {
-        try {
+        // try {
             $rooms = Room::query()
             ->where('is_active', true)
             ->get()
@@ -23,13 +23,13 @@ class RoomController extends Controller
                 'message' => 'Se han mostrado las salas correctamente.',
                 'data' => $rooms
             ], 200);
-        } catch (\Throwable $th) {
-            Log::error($th->getMessage());
-            return response([
-                'success' => false,
-                'message' => 'Error al mostrar las salas.'
-            ], 500);
-        }
+        // } catch (\Throwable $th) {
+        //     Log::error($th->getMessage());
+        //     return response([
+        //         'success' => false,
+        //         'message' => 'Error al mostrar las salas.'
+        //     ], 500);
+        // }
     }
 
     public function reserveRoom($id, Request $request)
