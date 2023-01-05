@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 //Admin
 Route::group([
-    'middleware' => ['jwt.auth', 'isAdmin']
+    'middleware' => ['jwt.auth', 'isAdmin', 'cors']
 ], function () {
     Route::post('/createroom', [AdminController::class, 'createRoom']);
     Route::put('/deleteroom/{id}', [AdminController::class, 'deleteRoom']);
@@ -43,7 +43,7 @@ Route::group([
 Route::get('/allevents', [EventController::class, 'getAllEvents']);
 
 Route::group([
-    'middleware' => 'jwt.auth'
+    'middleware' => ['jwt.auth', 'cors']
 ], function () {
     Route::get('/event/{id}', [EventController::class, 'reserveEvent']);
     Route::get('/events', [EventController::class, 'myEvents']);
@@ -53,21 +53,23 @@ Route::group([
 Route::get('/rooms', [RoomController::class, 'getAllRooms']);
 
 Route::group([
-    'middleware' => 'jwt.auth'
+    'middleware' => ['jwt.auth', 'cors']
 ], function () {
     Route::post('/room/{id}', [RoomController::class, 'reserveRoom']);
     Route::get('/reservation/{id}', [RoomController::class, 'cancelReservation']);
     Route::get('/reservations', [RoomController::class, 'myReservations']);
 });
 
-
-
 // Auth
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::group([
+    'middleware' => 'cors'
+], function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
 
 Route::group([
-    'middleware' => 'jwt.auth'
+    'middleware' => ['jwt.auth', 'cors']
 ], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'profile']);
