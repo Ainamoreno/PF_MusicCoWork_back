@@ -58,7 +58,8 @@ class AdminController extends Controller
             $users = DB::table('users')
                 ->where('is_active', true)
                 ->whereNotIn('id', [$userId])
-                ->get();
+                ->paginate(2);
+                // ->get();
 
             return response([
                 'success' => true,
