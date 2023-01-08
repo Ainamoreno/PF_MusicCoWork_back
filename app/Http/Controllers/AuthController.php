@@ -83,7 +83,7 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid Email or Password',
-            ], Response::HTTP_UNAUTHORIZED);
+            ], 200);
         }
 
         return response()->json([
