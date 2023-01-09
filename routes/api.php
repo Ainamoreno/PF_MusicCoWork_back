@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -71,7 +72,7 @@ Route::group([
 Route::group([
     'middleware' => ['jwt.auth', 'cors']
 ], function () {
-    Route::post('/update', [AuthController::class, 'updateProfile']);
+    Route::post('/update', [UserController::class, 'updateProfile']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'profile']);
 });
