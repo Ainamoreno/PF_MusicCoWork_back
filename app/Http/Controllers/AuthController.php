@@ -79,11 +79,17 @@ class AuthController extends Controller
         $input = $request->only('email', 'password');
         $jwt_token = null;
 
+        $email = $request->get('email');
+        $password = bcrypt($request->get('password'));
+
+        // $emailExist = User::where('email', $email)->get()->toArray();
+        // $passwordExist = User::find($password);
+        // dd($password);
         if (!$jwt_token = JWTAuth::attempt($input)) {
             return response()->json([
-                'success' => false,
+                'success' => true,
                 'message' => 'Invalid Email or Password',
-            ], Response::HTTP_UNAUTHORIZED);
+            ],200);
         }
 
         return response()->json([
