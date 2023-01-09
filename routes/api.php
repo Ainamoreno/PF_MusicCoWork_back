@@ -71,6 +71,7 @@ Route::group([
 Route::group([
     'middleware' => ['jwt.auth', 'cors']
 ], function () {
+    Route::put('/update', [AuthController::class, 'updateProfile']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'profile']);
 });
