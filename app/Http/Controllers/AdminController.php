@@ -167,7 +167,7 @@ class AdminController extends Controller
                 ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
                 ->join('users', 'users.id', '=', 'room_users.user_id')
                 ->select('users.id', 'users.name AS name_user', 'rooms.name AS name_room', 'room_users.*')
-                ->paginate(5);
+                ->paginate(6);
                 // ->get();
 
             return response([
@@ -212,7 +212,7 @@ class AdminController extends Controller
                 ->join('events', 'events.id', '=', 'event_users.event_id')
                 ->join('users', 'users.id', '=', 'event_users.user_id')
                 ->select('users.id', 'users.name AS name_user', 'events.name AS name_event', 'event_users.*')
-               ->paginate(5);
+               ->paginate(6);
                 // ->get();
 
             return response([
