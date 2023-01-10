@@ -211,7 +211,7 @@ class AdminController extends Controller
             $allReservations = DB::table('event_users')
                 ->join('events', 'events.id', '=', 'event_users.event_id')
                 ->join('users', 'users.id', '=', 'event_users.user_id')
-                ->select('users.id', 'users.name AS name_user', 'events.name AS name_event', 'event_users.*')
+                ->select('users.id', 'users.name AS name_user', 'events.name AS name_event', 'events.date', 'event_users.*')
                ->paginate(6);
                 // ->get();
 
