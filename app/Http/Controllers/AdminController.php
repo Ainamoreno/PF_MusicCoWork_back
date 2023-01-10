@@ -61,7 +61,6 @@ class AdminController extends Controller
                 ->where('is_active', true)
                 ->whereNotIn('id', [$userId])
                 ->paginate(2);
-                // ->get();
 
             return response([
                 'success' => true,
@@ -168,7 +167,6 @@ class AdminController extends Controller
                 ->join('users', 'users.id', '=', 'room_users.user_id')
                 ->select('users.id', 'users.name AS name_user', 'rooms.name AS name_room', 'room_users.*')
                 ->paginate(6);
-                // ->get();
 
             return response([
                 'success' => true,
@@ -213,7 +211,6 @@ class AdminController extends Controller
                 ->join('users', 'users.id', '=', 'event_users.user_id')
                 ->select('users.id', 'users.name AS name_user', 'events.name AS name_event', 'events.date', 'event_users.*')
                ->paginate(6);
-                // ->get();
 
             return response([
                 'success' => true,
@@ -230,20 +227,4 @@ class AdminController extends Controller
         }
     }
 
-    public function mailSend(){
-        // try {
-           Mail::to('ainamoreno@outlook.com')->send(new UserMail);
-        
-        return response([
-            'success' => false,
-            'message' => 'OK'
-        ], 200);
-
-        // } catch (\Throwable $th) {
-        //     return response([
-        //         'success' => false,
-        //         'message' => 'NO OK'
-        //     ], 500);
-        // }
-    }
 }

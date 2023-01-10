@@ -97,7 +97,6 @@ class RoomController extends Controller
                 ->select('rooms.id', 'rooms.name', 'room_users.*')
                 ->orderBy('created_at', 'desc')
                 ->paginate(5)
-                // ->get()
                 ->toArray();
 
             return response([
