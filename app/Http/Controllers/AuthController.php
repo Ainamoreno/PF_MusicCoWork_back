@@ -66,9 +66,9 @@ class AuthController extends Controller
             'role_id' => 1
         ]);
 
-        Mail::send('email.userCreated', $user->toArray(), function($message){
-            $message->to('ainamoreno@outlook.com', 'MusicCoWork') ->subject('Usuario Creado');
-        });
+        // Mail::send('email.userCreated', $user->toArray(), function($message){
+        //     $message->to('ainamoreno@outlook.com', 'MusicCoWork') ->subject('Usuario Creado');
+        // });
 
         $token = JWTAuth::fromUser($user);
         return response()->json([
