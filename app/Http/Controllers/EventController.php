@@ -74,6 +74,7 @@ class EventController extends Controller
                 ->where('user_id', $userId)
                 ->join('events', 'events.id', '=', 'event_users.event_id')
                 ->select('events.id', 'events.name', 'events.description', 'events.date', 'event_users.*')
+                ->orderBy('created_at', 'desc')
                 // ->get()
                 ->paginate(5)
                 ->toArray();

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -66,10 +66,7 @@ class AuthController extends Controller
             'role_id' => 1
         ]);
 
-        // Mail::send('email.userCreated', $user->toArray(), function($message){
-        //     $message->to('ainamoreno@outlook.com', 'MusicCoWork') ->subject('Usuario Creado');
-        // });
-
+        
         $token = JWTAuth::fromUser($user);
         return response()->json([
             "success" => false,

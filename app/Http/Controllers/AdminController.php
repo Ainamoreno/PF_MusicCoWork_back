@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserMail;
 use App\Models\Event;
 use App\Models\Room;
 use App\Models\User;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -226,5 +228,22 @@ class AdminController extends Controller
                 'message' => 'No se ha podido acceder a las reservas de asistencia de eventos correctamente.'
             ], 500);
         }
+    }
+
+    public function mailSend(){
+        // try {
+           Mail::to('ainamoreno@outlook.com')->send(new UserMail);
+        
+        return response([
+            'success' => false,
+            'message' => 'OK'
+        ], 200);
+
+        // } catch (\Throwable $th) {
+        //     return response([
+        //         'success' => false,
+        //         'message' => 'NO OK'
+        //     ], 500);
+        // }
     }
 }

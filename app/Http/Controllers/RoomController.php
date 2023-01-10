@@ -95,6 +95,7 @@ class RoomController extends Controller
                 ->where('cancelled', false)
                 ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
                 ->select('rooms.id', 'rooms.name', 'room_users.*')
+                ->orderBy('created_at', 'desc')
                 ->paginate(5)
                 // ->get()
                 ->toArray();
@@ -129,7 +130,7 @@ class RoomController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            
+
             return response([
                 'success' => false,
                 'message' => 'No se ha podido cancelar la reserva.'
