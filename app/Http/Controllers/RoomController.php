@@ -18,6 +18,7 @@ class RoomController extends Controller
             ->where('is_active', true)
             ->get()
             ->toArray();
+
             return response([
                 'success' => true,
                 'message' => 'Se han mostrado las salas correctamente.',
@@ -25,6 +26,7 @@ class RoomController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
+
             return response([
                 'success' => false,
                 'message' => 'Error al mostrar las salas.'
@@ -37,18 +39,6 @@ class RoomController extends Controller
         try {
             $roomId = $id;
             $userId = auth()->user()->id;
-            $roomIsBusy = RoomUser::where('room_id', $roomId)
-                ->where('date', $request->get('date'))
-                ->where('cancelled', false)
-                ->get()
-                ->toArray();
-
-            if (count($roomIsBusy) === 1) {
-                return response()->json([
-                    "success" => false,
-                    "message" => 'Lo sentimos, ya tenemos reservada el aula para este día'
-                ], 200);
-            }
 
             $validator = Validator::make($request->all(), [
                 'date' => 'required|date'
@@ -61,20 +51,34 @@ class RoomController extends Controller
                 ], 400);
             }
 
+            $roomIsBusy = RoomUser::where('room_id', $roomId)
+                ->where('date', $request->get('date'))
+                ->where('cancelled', false)
+                ->get()
+                ->toArray();
+
+            if (count($roomIsBusy) === 1) {
+                return response()->json([
+                    "success" => true,
+                    "message" => 'Lo sentimos, ya tenemos reservada el aula para este día'
+                ], 200);
+            }
+
             $reservation = RoomUser::create([
                 'user_id' => $userId,
                 'room_id' => $roomId,
                 'cancelled' => false,
                 'date' =>  $request->get('date'),
             ]);
+
             return response([
                 'success' => true,
                 'message' => 'Se ha reservado la sala correctamente.',
                 'date' => $reservation
-
             ], 200);
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
+
             return response([
                 'success' => false,
                 'message' => 'Error al reservar la sala.'
@@ -125,6 +129,7 @@ class RoomController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
+            
             return response([
                 'success' => false,
                 'message' => 'No se ha podido cancelar la reserva.'
