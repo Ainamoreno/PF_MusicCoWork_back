@@ -36,7 +36,7 @@ class EventSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'Audución de percusión',
+                'name' => 'Audición de percusión',
                 'description' => 'Tendremos el placer de recibir a dos percusionistas Valencianos que han participado en los certámenes más importantes de España.',
                 'is_active' => true,
                 'date' => '2023-08-12',
