@@ -165,7 +165,7 @@ class AdminController extends Controller
             $allReservations = DB::table('room_users')
                 ->join('rooms', 'rooms.id', '=', 'room_users.room_id')
                 ->join('users', 'users.id', '=', 'room_users.user_id')
-                ->select('users.id', 'users.name AS name_user', 'rooms.name AS name_room', 'room_users.*')
+                ->select('users.id', 'users.name AS name_user', 'users.surname', 'rooms.name AS name_room', 'room_users.*')
                 ->paginate(6);
 
             return response([
